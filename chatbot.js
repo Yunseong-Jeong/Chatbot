@@ -1,11 +1,13 @@
 require('dotenv').config();
 
-const { RTMClient } = require('@slack/rtm-api');
+const { RTMClient,LogLevel } = require('@slack/rtm-api');
 
 const token = process.env.SLACK_TOKEN;
 
-const rtm = new RTMClient(token);
-rtm.start();
+const rtm = new RTMClient(token,{});
+
+rtm.start()
+    .catch(console.error);
 
 const food = require('./food');
 const movie = require('./movie');
